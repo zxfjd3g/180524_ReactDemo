@@ -29,6 +29,17 @@ export default class App extends Component {
 
   }
 
+  deleteComment = (index) => {
+    // 取出原本状态数据
+    const {comments} = this.state
+    // 更新数据
+    comments.splice(index, 1)
+    // 更新状态
+    this.setState({
+      comments
+    })
+  }
+
   render () {
     const {comments} = this.state
 
@@ -45,7 +56,7 @@ export default class App extends Component {
         </header>
         <div className="container">
           <Add addComment={this.addComment}/>
-          <List comments={comments}/>
+          <List comments={comments} deleteComment={this.deleteComment}/>
         </div>
       </div>
     )
