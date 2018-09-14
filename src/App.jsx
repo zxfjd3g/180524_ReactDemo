@@ -2,29 +2,19 @@
 应用根组件
  */
 import React, {Component} from 'react'
-import Search from './components/search'
-import Main from './components/main'
+
+import {Button, Toast} from 'antd-mobile'
+
 
 export default class App extends Component {
 
-  state = {
-    searchName: ''
-  }
-
-  setSearchName = (searchName) => {
-    // 更新状态
-    this.setState({
-      searchName
-    })
+  handleClick = () => {
+    Toast.success('点击了...')
   }
 
   render () {
-    const {searchName} = this.state
     return (
-      <div className="container">
-        <Search setSearchName={this.setSearchName}/>
-        <Main searchName={searchName}/>
-      </div>
+      <Button type='primary' onClick={this.handleClick}>测试antd mobile</Button>
     )
   }
 }
