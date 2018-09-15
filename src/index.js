@@ -6,10 +6,10 @@ import App from './App'
 
 
 ReactDOM.render((
-  <BrowserRouter>
+  /*<BrowserRouter>
     <App/>
-  </BrowserRouter>
-  /*<HashRouter>
+  </BrowserRouter>*/
+  <HashRouter>
     <App/>
-  </HashRouter>*/
+  </HashRouter>
 ), document.getElementById('root'))
