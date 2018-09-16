@@ -40,7 +40,8 @@
             在内存中生成打包文件
             生成本地打包文件
             启动服务器加载运行本地打包文件
-            
+
+         
 # 2. app1: 实现一个评论管理功能
 ## 1). 拆分组件:
 	应用组件: App
@@ -68,6 +69,7 @@
 	  * 绑定事件监听, 并处理
 	  * 更新state
 
+
 # 3. app2: 实现github用户搜索功能
 ## 1). react应用中的ajax请求
 	axios: 包装XMLHttpRequest对象, promise风格, 支持浏览端/node服务器端
@@ -85,6 +87,7 @@
 	编写动态组件
 		componentWillReceiveProps(nextProps): 监视接收到新的props, 发送ajax
 		使用axios库发送ajax请求
+
 
 # 4. 组件间通信总结
 ## 1). 方式一: 通过props传递
@@ -117,6 +120,7 @@
 		* 触发事件(编码)
 			* 事件名(类型): 与绑定的事件监听的事件名一致
 			* 数据: 会自动传递给回调函数
+  
       
 # 5. ES6新语法总结
 	定义变量/常量: const/let
@@ -133,7 +137,107 @@
 	类: class/extends/constructor/super
 	ES6模块化: export default | import
 	异步: promise, async/await
+
 	
 # 6. UI组件库: antd-mobile
     引入组件库: npm install --save antd-mobile
     实现按需打包: 只打包import的组件, 自动打包相关的css
+
+
+# 7. react路由
+
+## 1). 3个需要理解的知识点
+    1. react-router-dom理解
+        1) react插件库
+        2) 专门用来实现一个SPA应用
+        
+    2. SPA的理解
+        1) 单页Web应用（single page web application，SPA）
+        2) 整个应用只有一个完整的页面
+        3) 点击页面中的链接不会刷新页面, 本身也不会向服务器发请求
+        4) 当点击路由链接时, 只会做页面的局部更新
+        6) 数据都需要通过ajax请求获取, 并在前端异步展现
+        
+    3.  路由的理解
+        1) 什么是路由
+          a. 映射关系(key--value)
+          b. key是path, value是callback或component
+        2). 路由的分类的作用
+          a. 后台路由: node服务器端路由, value是function, 用来处理客户端提交的请求并返回一个响应数据
+          b.前台路由: 浏览器端路由, value是component, 当请求的是路由path时, 浏览器端前没有发送http请求, 但界面会更新显示对应的组件 
+
+## 2). react-router的使用
+    1. 相关语法
+        1). 组件
+            <HashRouter> / <BrowserRouter>
+            <Route>
+            <Redirect>
+            <NavLink> / <Link>
+            <Switch>
+        2). 对象或函数
+            props.history对象
+            props.match对象
+            props.location对象
+            withRouter函数
+            
+    2. 基本使用
+        1). 定义路由组件
+        2). 映射成路由
+        3). 通过路由链接或编程式路由导航跳转路由
+    
+    3. 嵌套组件
+        1). 在某个路由组件内部映射子路由
+        2). 2级路由必然是某个1级路由的子路由
+    
+    4. 向路由组件传递数据
+        1). 映射路由: <Route path="/home/message/:id"/>
+        2). 路由链接传递数据: <Link to="/home/message/3">
+        5). 路由组件读取数据: this.props.match.params.id
+    
+    5. 编程式路由导航(跳转)
+        1). history.push(path)
+        2). history.replace(path)
+        3). history.goBack()
+
+# 8. redux
+## 1). redux理解
+    1. 什么?: redux是专门做状态管理的独立第3方库, 不是react插件
+    2. 作用?: 对应用中状态进行集中式的管理(写/读)
+    3. 开发: 与react-redux, redux-thunk等插件配合使用
+
+## 2). redux相关API
+    1. redux中包含: createStore(), applyMiddleware(), combineReducers()
+    2. store对象: getState(), dispatch(), subscribe()
+    3. react-redux: <Provider>, connect()()
+
+## 3). redux核心概念(3个)
+    1. action与actionCreator: 
+        action默认是对象(同步action), {type: 'xxx', data: value}, 需要通过对应的actionCreator产生, 
+        它的值也可以是函数(异步action), 需要引入redux-thunk才可以
+    2. reducer
+        根据老的state和指定的action, 返回一个新的state
+        不能修改老的state
+    3. store
+        redux最核心的管理对象
+        内部管理着: state和reducer
+        提供方法: getState(), dispatch(action), subscribe(listener)
+
+## 4). redux工作流程
+![](https://i.imgur.com/RFFX4fd.png)
+
+## 5). 使用redux及相关库编码
+    1. 需要引入的库: 
+        redux
+        react-redux
+        redux-thunk
+        redux-devtools-extension(这个只在开发时需要)
+    2. redux文件夹: 
+        action-types.js
+        actions.js
+        reducers.js
+        store.js
+    3. 组件分2类: 
+        ui组件(components): 不使用redux相关PAI
+        容器组件(containers): 使用redux相关API
+
+     
