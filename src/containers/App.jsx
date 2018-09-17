@@ -4,7 +4,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import {increment, decrement} from '../redux/actions'
+import {increment, decrement, incrementAsync} from '../redux/actions'
 import Counter from '../components/counter'
 
 // 将state状态数据映射(转换)成一般属性传递给UI组件(Counter)
@@ -35,7 +35,7 @@ export default connect(
 
 export default connect(
   state => ({count: state}),
-  {increment, decrement} // 内部会对对象中的方法再加一层包装
+  {increment, decrement, incrementAsync} // 内部会对对象中的方法再加一层包装
 )(Counter)
 
 /*
