@@ -162,7 +162,7 @@
         1) 什么是路由
           a. 映射关系(key--value)
           b. key是path, value是callback或component
-        2). 路由的分类的作用
+        2). 路由的分类和作用
           a. 后台路由: node服务器端路由, value是function, 用来处理客户端提交的请求并返回一个响应数据
           b.前台路由: 浏览器端路由, value是component, 当请求的是路由path时, 浏览器端前没有发送http请求, 但界面会更新显示对应的组件 
 
@@ -185,7 +185,7 @@
         2). 映射成路由
         3). 通过路由链接或编程式路由导航跳转路由
     
-    3. 嵌套组件
+    3. 嵌套路由
         1). 在某个路由组件内部映射子路由
         2). 2级路由必然是某个1级路由的子路由
     
@@ -215,6 +215,7 @@
         action默认是对象(同步action), {type: 'xxx', data: value}, 需要通过对应的actionCreator产生, 
         它的值也可以是函数(异步action), 需要引入redux-thunk才可以
     2. reducer
+        回调函数
         根据老的state和指定的action, 返回一个新的state
         不能修改老的state
     3. store
